@@ -1,0 +1,95 @@
+{
+  "version": "0.3.3",
+  "flags": {},
+  "shapes": [
+    {
+      "label": "card",
+      "text": "",
+      "points": [
+        [
+          0.0,
+          1639.0
+        ],
+        [
+          182.55813953488382,
+          2679.0697674418607
+        ]
+      ],
+      "group_id": null,
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "card",
+      "text": "",
+      "points": [
+        [
+          383.04651162790697,
+          1429.093023255814
+        ],
+        [
+          1543.0232558139537,
+          2674.4186046511627
+        ]
+      ],
+      "group_id": null,
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "card",
+      "text": "",
+      "points": [
+        [
+          1621.0232558139533,
+          1812.046511627907
+        ],
+        [
+          2584.883720930233,
+          3083.720930232558
+        ]
+      ],
+      "group_id": null,
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "card",
+      "text": "",
+      "points": [
+        [
+          1305.7209302325582,
+          678.0
+        ],
+        [
+          2524.4186046511627,
+          1783.7209302325582
+        ]
+      ],
+      "group_id": null,
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "card",
+      "text": "",
+      "points": [
+        [
+          347.0232558139535,
+          472.3953488372092
+        ],
+        [
+          1054.651162790698,
+          1355.8139534883721
+        ]
+      ],
+      "group_id": null,
+      "shape_type": "rectangle",
+      "flags": {}
+    }
+  ],
+  "imagePath": "img4.jpg",
+  "imageData": null,
+  "imageHeight": 4000,
+  "imageWidth": 3000
+}
