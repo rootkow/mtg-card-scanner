@@ -4,6 +4,7 @@ import os
 import sys
 from glob import glob
 from pathlib import Path
+from turtle import width
 
 images_dir = os.path.dirname(os.path.realpath(__file__))
 combine_dir = str(Path(images_dir, "combine"))
@@ -30,7 +31,8 @@ json_glob = "img*.json"
 # img_paths.sort(key=lambda x: x["id"])
 # print(json.dumps(img_paths, indent=4))
 
-labels_json: dict = {
+train_labels_json: dict = {"images": [], "annotations": [], "categories": [{"id": 0, "name": "background"}, {"id": 1, "name": "card"}]}
+validation_labels_json: dict = {
     "images": [],
     "annotations": [],
     "categories": [{"id": 0, "name": "background"}, {"id": 1, "name": "card"}],
@@ -41,26 +43,44 @@ with open(f"{combine_dir}/merged.json", "r") as f:
 
 for entry in merged:
     id = int(entry["imagePath"][3:-4])
-    labels_json["images"].append(
-        {
-            "id": id,
-            "file_name": entry["imagePath"]
-        }
-    )
+
+    image_labels = {
+        "id": id,
+        "file_name": entry["imagePath"],
+    }
+    if id in [12, 25, 3, 7]:  # validation set
+        validation_labels_json["images"].append(image_labels)
+    else:
+        train_labels_json["images"].append(image_labels)
 
     for shape in entry["shapes"]:
-        labels_json["annotations"].append(
-            {
-                "image_id": id,
-                "category_id": 1,
-                "bbox": [
-                    float(shape["points"][0][0]),
-                    float(shape["points"][0][1]),
-                    float(shape["points"][1][0]),
-                    float(shape["points"][1][1]),
-                ],
-            }
-        )
+        x1 = float(shape["points"][0][0] if shape["points"][0][0] > 0 else 0.0)
+        y1 = float(shape["points"][0][1] if shape["points"][0][1] > 0 else 0.0)
+        x2 = float(shape["points"][1][0] if shape["points"][1][0] > 0 else 0.0)
+        y2 = float(shape["points"][1][1] if shape["points"][1][1] > 0 else 0.0)
+        width = float(x2 - x1)
+        height = float(y2 - y1)
+        if width < 0.1 or height < 0.1:
+            print(f"width or height too small: {width}x{height}")
+            raise Exception(f"width or height too small: {width}x{height}")
+
+        annotation_labels = {
+            "image_id": id,
+            "category_id": 1,
+            "bbox": [
+                round(float(x1), 1),
+                round(float(y1), 1),
+                round(float(width), 1),
+                round(float(height), 1),
+            ],
+        }
+        if id in [12, 25, 3, 7]:  # validation set
+            validation_labels_json["annotations"].append(annotation_labels)
+        else:
+            train_labels_json["annotations"].append(annotation_labels)
+
+# print(json.dumps(train_labels_json, indent=4))
+# print(json.dumps(validation_labels_json, indent=4))
 
 # for path_details in img_paths:
 #     with open(path_details["full_path"], "r") as f:
@@ -71,8 +91,10 @@ for entry in merged:
 
 
 # for testing purposes
-with open(f"{combine_dir}/labels.json", "w") as f:
-    json.dump(labels_json, f)
+with open(f"{combine_dir}/train_labels.json", "w") as f:
+    json.dump(train_labels_json, f)
+with open(f"{combine_dir}/validation_labels.json", "w") as f:
+    json.dump(validation_labels_json, f)
 
 # TODO:
 # with open(f"{images_dir}/train/labels.json", "w") as f:
