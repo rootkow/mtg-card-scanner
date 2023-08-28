@@ -1,7 +1,8 @@
 Necessary todos:
 - Card segmentation
+    > Look into MobileSAM: https://github.com/ChaoningZhang/MobileSAM
 - OCR segmented sections
-    > ie. Name, type, 
+    > ie. Name, type, oracle text, flavor, artist, etc.
 - Classification
     > Set symbol
 - Scryfall integration for card details
@@ -17,6 +18,7 @@ Functional/UX considerations:
 - Option for fuzzy searching?
 
 Feature considerations:
+- *** Ultimately the idea is to build something generic enough to be used for any CCG. Ideally without needing to retrain a model for future CCGs. ***
 - Cloud sync for app backup (Dropbox, Google Drive, etc.)
 - Deck building from collection
     > Moxfield (or some deck building tool) integration
