@@ -1,0 +1,28 @@
+Necessary todos:
+- Card segmentation
+- OCR segmented sections
+    > ie. Name, type, 
+- Classification
+    > Set symbol
+- Scryfall integration for card details
+    - Pull bulk JSON DB
+
+Functional/UX considerations:
+- Option to show a box on screen for optimal positioning
+- Persistance (DB)
+    > Cards, settings export/backup
+- Fallbacks after X unit_time if unable to determine card within % confidence
+- TCGplayer, Card Kingdom, etc. integrations (pricing)
+- *** Localization ***
+- Option for fuzzy searching?
+
+Feature considerations:
+- Cloud sync for app backup (Dropbox, Google Drive, etc.)
+- Deck building from collection
+    > Moxfield (or some deck building tool) integration
+- Does MTG Stocks have any integration APIs that'd be useful?
+    > ie. historical information? (their data might just be from TCGplayer, not sure)
+- Graded card info
+    > PSA, BGS, Ebay vault?, etc integration
+- Mode determine rough card condition
+- Open the sports cards can of worms. Pandoras box will eventually be open...
