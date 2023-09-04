@@ -1178,3 +1178,4 @@ obj/
 # User defined
 !*.zip
 !*.tar.gz
+.vscode/
